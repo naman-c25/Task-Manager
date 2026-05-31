@@ -10,7 +10,7 @@ async function bootstrap() {
 
     const app = createApp();
     const server = app.listen(env.PORT, () => {
-      console.log(`🚀 Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
+      console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
     });
 
     // Graceful shutdown so in-flight requests finish and the DB closes cleanly.
@@ -25,7 +25,7 @@ async function bootstrap() {
     process.on('SIGINT', () => void shutdown('SIGINT'));
     process.on('SIGTERM', () => void shutdown('SIGTERM'));
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    console.error('Failed to start server:', error);
     process.exit(1);
   }
 }

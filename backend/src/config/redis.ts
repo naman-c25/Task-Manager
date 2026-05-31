@@ -23,8 +23,8 @@ if (!env.isProduction) {
   globalForRedis.redis = redis;
 }
 
-redis.on('connect', () => console.log('✅ Redis connected'));
-redis.on('error', (err) => console.warn('⚠️  Redis error:', err.message));
+redis.on('connect', () => console.log('Redis connected'));
+redis.on('error', (err) => console.warn('Redis error:', err.message));
 
 export async function disconnectRedis(): Promise<void> {
   await redis.quit();

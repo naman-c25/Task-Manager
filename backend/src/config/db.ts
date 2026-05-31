@@ -24,7 +24,7 @@ if (!env.isProduction) {
 /** Verify connectivity at boot so the server fails fast on a bad DATABASE_URL. */
 export async function connectDatabase(): Promise<void> {
   await prisma.$connect();
-  console.log('✅ PostgreSQL connected (Prisma)');
+  console.log('PostgreSQL connected (Prisma)');
 }
 
 export async function disconnectDatabase(): Promise<void> {

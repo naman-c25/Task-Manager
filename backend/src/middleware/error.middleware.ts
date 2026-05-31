@@ -37,7 +37,7 @@ export function errorHandler(err: unknown, _req: Request, res: Response, _next: 
   }
 
   if (statusCode >= 500) {
-    console.error('💥 Unhandled error:', err);
+    console.error('Unhandled error:', err);
   }
 
   res.status(statusCode).json({
