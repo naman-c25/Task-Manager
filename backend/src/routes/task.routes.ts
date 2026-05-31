@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 
-// Every task route requires a valid session.
+// Har task route ke liye valid session zaroori hai
 router.use(requireAuth);
 
 router.get('/', taskController.list);

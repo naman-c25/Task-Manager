@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <App />
       </BrowserRouter>
 
-      {/* Global toast portal — themed to match the app surfaces. */}
+      {/* Global toast portal - app surfaces se match karta theme */}
       <Toaster
         position="top-right"
         toastOptions={{

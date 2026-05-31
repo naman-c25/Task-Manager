@@ -7,18 +7,14 @@ import { env } from './config/env.js';
 import apiRoutes from './routes/index.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
 
-/**
- * Build and configure the Express application. Kept separate from server
- * bootstrap so it can be imported directly in integration tests.
- */
+// Express app banate aur configure karte hain. Server bootstrap se alag rakha hai taaki test me direct import ho sake
 export function createApp(): Application {
   const app = express();
 
-  // Trust the first proxy hop (Render, Vercel) so secure cookies and rate
-  // limiting see the real client IP.
+  // Pehle proxy hop (Render, Vercel) ko trust karo taaki secure cookie aur rate limit ko asli client IP mile
   app.set('trust proxy', 1);
 
-  // Security & parsing middleware.
+  // Security aur parsing middleware
   app.use(helmet());
   app.use(
     cors({
@@ -34,15 +30,15 @@ export function createApp(): Application {
     app.use(morgan('dev'));
   }
 
-  // Lightweight health check for uptime monitors and Render.
+  // Halka sa health check - uptime monitor aur Render ke liye
   app.get('/health', (_req, res) => {
     res.json({ success: true, status: 'ok', uptime: process.uptime() });
   });
 
-  // Versioned API.
+  // Versioned API
   app.use('/api/v1', apiRoutes);
 
-  // 404 + centralized error handling (must be registered last).
+  // 404 + central error handling (sabse last me register hona chahiye)
   app.use(notFoundHandler);
   app.use(errorHandler);
 

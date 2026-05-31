@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useUiStore } from '@/store/ui.store';
 
-/**
- * Syncs the persisted theme with the `.dark` class on <html>. Mount once near
- * the app root so the document class always reflects store state.
- */
+// Persisted theme ko <html> ke `.dark` class ke saath sync karta hai. App root ke paas ek hi baar mount karo taaki document class hamesha store ke hisaab se rahe
 export function useTheme() {
   const theme = useUiStore((s) => s.theme);
   const toggleTheme = useUiStore((s) => s.toggleTheme);

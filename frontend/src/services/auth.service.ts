@@ -1,10 +1,7 @@
 import { apiClient } from './apiClient';
 import type { ApiResponse, AuthResult, LoginPayload, RegisterPayload, User } from '@/types';
 
-/**
- * Auth API service. Each method returns the unwrapped `data` payload so callers
- * (hooks/components) never deal with the response envelope directly.
- */
+// Auth API service. Har method seedha unwrapped data return karta hai taaki hooks/components ko envelope se matlab na rahe
 export const authApi = {
   async register(payload: RegisterPayload): Promise<AuthResult> {
     const { data } = await apiClient.post<ApiResponse<AuthResult>>('/auth/register', payload);

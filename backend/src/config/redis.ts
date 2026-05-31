@@ -1,14 +1,8 @@
 import { Redis } from 'ioredis';
 import { env } from './env.js';
 
-/**
- * Shared Redis connection (ioredis). Used for: user-profile caching, the
- * auth-route rate-limit store, and the JWT revocation denylist.
- *
- * Resilience: a bounded retry strategy keeps reconnecting in the background,
- * and all cache helpers fail open (see lib/cache.ts) so a Redis outage degrades
- * to direct DB reads rather than taking the API down.
- */
+// Ek hi Redis connection sab jagah use hota hai - caching, rate limiting aur JWT denylist ke liye
+// Agar Redis down ho jaye toh cache helpers fail-open hain (lib/cache.ts), matlab app crash nahi hoga, DB se padh lega
 const globalForRedis = globalThis as unknown as { redis?: Redis };
 
 export const redis =

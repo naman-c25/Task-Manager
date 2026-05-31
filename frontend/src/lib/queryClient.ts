@@ -1,9 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 
-/**
- * Shared React Query client. Sensible defaults: data stays fresh for a minute,
- * failed queries retry once, and we don't refetch aggressively on window focus.
- */
+// Shared React Query client. Sensible defaults - data ek minute fresh rehta hai, fail hui query ek baar retry hoti hai, aur window focus pe baar baar refetch nahi karte
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

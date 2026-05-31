@@ -1,7 +1,7 @@
 import { CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
-/** Brand mark + wordmark. Hide the text in collapsed/compact contexts. */
+// Brand logo + naam. Collapsed/compact jagah pe text hide kar dete hain
 export function Logo({ showText = true, className }: { showText?: boolean; className?: string }) {
   return (
     <div className={cn('flex items-center gap-2', className)}>

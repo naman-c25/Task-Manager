@@ -3,7 +3,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { Navbar } from '@/components/layout/Navbar';
 import { MobileNav } from '@/components/layout/MobileNav';
 
-/** Authenticated shell: persistent sidebar + top navbar wrapping the page outlet. */
+// Logged-in shell - sidebar + top navbar, andar page ka outlet
 export function DashboardLayout() {
   return (
     <div className="flex h-screen overflow-hidden bg-background">

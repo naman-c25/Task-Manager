@@ -4,9 +4,9 @@ import { persist } from 'zustand/middleware';
 type Theme = 'light' | 'dark';
 
 interface UiState {
-  /** Desktop sidebar collapsed state. */
+  // Desktop sidebar collapse hai ya nahi
   isSidebarCollapsed: boolean;
-  /** Mobile slide-over navigation open state (never persisted). */
+  // Mobile slide-over nav khula hai ya nahi (ye kabhi persist nahi hota)
   isMobileNavOpen: boolean;
   theme: Theme;
 

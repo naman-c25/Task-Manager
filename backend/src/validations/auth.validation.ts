@@ -1,10 +1,7 @@
 import { z } from 'zod';
 
-/**
- * Shared password policy: minimum 8 chars, with at least one lowercase,
- * one uppercase, and one number. Mirrored on the frontend with the same Zod
- * schema shape so client and server validation never drift apart.
- */
+// Password ka rule - min 8 char, ek lowercase, ek uppercase aur ek number zaroori
+// Frontend pe bhi same shape ka schema hai taaki client aur server validation kabhi alag na ho jaaye
 const passwordSchema = z
   .string()
   .min(8, 'Password must be at least 8 characters')

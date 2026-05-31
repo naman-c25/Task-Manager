@@ -1,10 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStore } from '@/store/auth.store';
 
-/**
- * Wraps auth pages (login/register). Already-authenticated users are bounced
- * straight to the dashboard so they never see the login form again.
- */
+// Auth pages (login/register) wrap karta hai. Already logged-in banda seedha dashboard pe chala jaata hai, login form dobara nahi dikhta
 export function PublicRoute() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 

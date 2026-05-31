@@ -3,12 +3,9 @@ import { env } from '@/lib/env';
 import { getAuthToken, useAuthStore } from '@/store/auth.store';
 import type { ApiErrorResponse, NormalizedApiError } from '@/types';
 
-/**
- * Pre-configured Axios instance. Two interceptors do the heavy lifting:
- *  - request: attaches the Bearer token from the auth store
- *  - response: unwraps the API envelope and normalizes every error into a
- *    consistent { message, status, fieldErrors } shape
- */
+// Pre-configured Axios instance. Do interceptors saara kaam karte hain -
+// request: auth store se Bearer token laga deta hai
+// response: API envelope unwrap karta hai aur har error ko ek consistent { message, status, fieldErrors } shape me badal deta hai
 export const apiClient: AxiosInstance = axios.create({
   baseURL: env.apiUrl,
   withCredentials: true,
@@ -17,7 +14,7 @@ export const apiClient: AxiosInstance = axios.create({
   },
 });
 
-// Attach the auth token to every outgoing request.
+// Har outgoing request pe auth token laga do
 apiClient.interceptors.request.use((config) => {
   const token = getAuthToken();
   if (token) {
@@ -26,13 +23,13 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// Normalize responses and errors.
+// Response aur error ko normalize karo
 apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ApiErrorResponse>) => {
     const status = error.response?.status ?? 0;
 
-    // Auto-logout on 401 so a stale/expired token doesn't leave a ghost session.
+    // 401 pe auto-logout taaki purana/expired token ghost session na chhode
     if (status === 401) {
       useAuthStore.getState().clearAuth();
     }

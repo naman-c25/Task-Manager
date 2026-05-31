@@ -18,10 +18,7 @@ function buildAuthResult(user: PublicUser): AuthResult {
   };
 }
 
-/**
- * Authentication business logic. Owns all rules (hashing, uniqueness, credential
- * checks) and the read-through cache for profiles. Framework-free and testable.
- */
+// Auth ka saara business logic - hashing, uniqueness check, credential check aur profile ka cache. Express se koi lena dena nahi, isliye test karna aasan
 export const authService = {
   async register(input: RegisterInput): Promise<AuthResult> {
     if (await userRepository.existsByEmail(input.email)) {
@@ -40,8 +37,7 @@ export const authService = {
 
   async login(input: LoginInput): Promise<AuthResult> {
     const user = await userRepository.findByEmailWithPassword(input.email);
-    // Compare even on a missing user is unnecessary; the generic message below
-    // already prevents user enumeration.
+    // Same generic message dono jagah, taaki koi guess na kar paaye ki email exist karta hai ya nahi
     if (!user) {
       throw ApiError.unauthorized('Invalid email or password');
     }
@@ -54,10 +50,7 @@ export const authService = {
     return buildAuthResult({ id: user.id, name: user.name, email: user.email });
   },
 
-  /**
-   * Read-through cache: serve the profile from Redis when warm, otherwise hit
-   * Postgres and backfill. Cuts DB load for the frequently-polled /me endpoint.
-   */
+  // Read-through cache: pehle Redis se try karo, na mile toh Postgres se laao aur cache me daal do - /me baar baar call hota hai isliye DB load kam ho jaata hai
   async getProfile(userId: string): Promise<PublicUser> {
     const key = cacheKeys.userProfile(userId);
 

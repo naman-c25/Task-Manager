@@ -1,7 +1,7 @@
 import { prisma } from '../config/db.js';
 import type { CreateTaskInput, UpdateTaskInput } from '../validations/task.validation.js';
 
-// Shared select — excludes the foreign key from API responses.
+// Shared select - foreign key (userId) ko response me nahi bhejte
 const taskSelect = {
   id: true,
   title: true,
@@ -11,11 +11,7 @@ const taskSelect = {
   updatedAt: true,
 } as const;
 
-/**
- * Data-access layer for tasks. All reads/writes are scoped by `userId` so a user
- * can only ever touch their own rows — ownership is enforced at the query level,
- * not just in business logic.
- */
+// Task ka data access. Har query userId se scoped hai, isliye banda sirf apne hi rows chhoo sakta hai - ownership query level pe enforce ho rahi, sirf logic me nahi
 export const taskRepository = {
   listByUser(userId: string) {
     return prisma.task.findMany({

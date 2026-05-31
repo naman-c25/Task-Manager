@@ -15,10 +15,7 @@ interface ModalProps {
   className?: string;
 }
 
-/**
- * Accessible, animated modal rendered through a portal. Closes on backdrop click
- * and Escape, and locks body scroll while open.
- */
+// Accessible animated modal jo portal se render hota hai. Backdrop click aur Escape pe band, aur khule rehne par body scroll lock kar deta hai
 export function Modal({ isOpen, onClose, title, description, children, footer, className }: ModalProps) {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => e.key === 'Escape' && onClose();

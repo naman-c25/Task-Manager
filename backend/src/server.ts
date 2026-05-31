@@ -3,7 +3,7 @@ import { env } from './config/env.js';
 import { connectDatabase, disconnectDatabase } from './config/db.js';
 import { disconnectRedis } from './config/redis.js';
 
-/** Bootstrap: connect to the database, then start the HTTP server. */
+// Bootstrap: pehle database connect karo, phir HTTP server start karo
 async function bootstrap() {
   try {
     await connectDatabase();
@@ -13,9 +13,9 @@ async function bootstrap() {
       console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
     });
 
-    // Graceful shutdown so in-flight requests finish and the DB closes cleanly.
+    // Graceful shutdown taaki chal rahe requests poore ho jaayein aur DB theek se band ho
     const shutdown = async (signal: string) => {
-      console.log(`\n${signal} received — shutting down gracefully...`);
+      console.log(`\n${signal} received - shutting down gracefully...`);
       server.close(async () => {
         await Promise.allSettled([disconnectDatabase(), disconnectRedis()]);
         process.exit(0);

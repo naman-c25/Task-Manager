@@ -1,8 +1,5 @@
-/**
- * Operational error with an attached HTTP status code.
- * Thrown anywhere in the request lifecycle and handled centrally by the
- * error middleware, keeping controllers free of repetitive try/catch noise.
- */
+// Custom error jisme HTTP status code attach hota hai
+// Kahin bhi throw kar do, error middleware central jagah handle kar lega - har controller me try/catch nahi likhna padta
 export class ApiError extends Error {
   public readonly statusCode: number;
   public readonly isOperational: boolean;

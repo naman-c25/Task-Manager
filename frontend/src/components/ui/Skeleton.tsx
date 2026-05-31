@@ -1,10 +1,7 @@
 import type { HTMLAttributes } from 'react';
 import { cn } from '@/lib/cn';
 
-/**
- * Shimmering placeholder block. Compose multiple Skeletons to mirror the shape
- * of content while it loads (cards, list rows, avatars).
- */
+// Shimmer wala placeholder block. Multiple Skeletons jod ke loading ke time content ki shape bana lo (cards, list rows, avatar)
 export function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div

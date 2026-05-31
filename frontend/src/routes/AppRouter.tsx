@@ -6,25 +6,21 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { PublicRoute } from './PublicRoute';
 import { Loader } from '@/components/ui/Loader';
 
-// Code-split pages so the initial bundle stays lean.
+// Pages ko code-split karte hain taaki initial bundle halka rahe
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const TasksPage = lazy(() => import('@/pages/TasksPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
-/**
- * Central route table.
- *  - Public routes (login/register) redirect away if already authenticated.
- *  - Protected routes require a session and render inside the dashboard shell.
- */
+// Central route table - public routes (login/register) logged-in hone par redirect, protected routes ko session chahiye aur ye dashboard shell ke andar render hote hain
 export function AppRouter() {
   return (
     <Suspense fallback={<Loader fullScreen label="Loading…" />}>
       <Routes>
         <Route index element={<Navigate to="/dashboard" replace />} />
 
-        {/* Public / auth routes */}
+        {/* Public / auth wale routes */}
         <Route element={<PublicRoute />}>
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<LoginPage />} />
@@ -32,7 +28,7 @@ export function AppRouter() {
           </Route>
         </Route>
 
-        {/* Protected / app routes */}
+        {/* Protected / app wale routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />

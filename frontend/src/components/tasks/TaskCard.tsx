@@ -14,7 +14,7 @@ interface TaskCardProps {
 
 const ALL_STATUSES: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'DONE'];
 
-/** A single draggable-feeling task card with an actions menu (edit/move/delete). */
+// Ek task card with actions menu (edit/move/delete)
 export function TaskCard({ task, onEdit, onDelete, onMove }: TaskCardProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

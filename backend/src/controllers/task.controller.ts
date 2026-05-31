@@ -3,7 +3,7 @@ import { taskService } from '../services/task.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { sendSuccess } from '../utils/ApiResponse.js';
 
-/** HTTP layer for tasks. `requireAuth` guarantees `req.user` is present. */
+// Task ka HTTP layer. requireAuth pehle hi chal chuka hota hai isliye req.user pakka milega
 export const taskController = {
   list: asyncHandler(async (req: Request, res: Response) => {
     const tasks = await taskService.list(req.user!.id);

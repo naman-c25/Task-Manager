@@ -6,11 +6,8 @@ import type { CreateTaskInput, UpdateTaskInput } from '../validations/task.valid
 
 type Task = Awaited<ReturnType<typeof taskRepository.findByIdForUser>>;
 
-/**
- * Task business logic. Owns ownership checks and the per-user list cache: reads
- * are served read-through from Redis, and every mutation invalidates that key so
- * the next read is always fresh.
- */
+// Task ka business logic. Ownership check aur per-user list cache yahin sambhaalte hain
+// List read-through Redis se aati hai, aur har write pe cache key invalidate kar dete hain taaki agli read hamesha fresh ho
 export const taskService = {
   async list(userId: string) {
     const key = cacheKeys.taskList(userId);
@@ -30,7 +27,7 @@ export const taskService = {
   },
 
   async update(userId: string, id: string, input: UpdateTaskInput) {
-    // Ownership check — scoped lookup returns null for tasks the user doesn't own.
+    // Ownership check - scoped lookup null dega agar task user ka nahi hai
     const existing = await taskRepository.findByIdForUser(id, userId);
     if (!existing) throw ApiError.notFound('Task not found');
 

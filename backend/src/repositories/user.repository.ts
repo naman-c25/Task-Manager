@@ -1,21 +1,18 @@
 import { prisma } from '../config/db.js';
 
-/** Public-safe user shape (never includes the password hash). */
+// Public-safe user shape (password hash kabhi bhi include nahi hoga)
 export interface PublicUser {
   id: string;
   name: string;
   email: string;
 }
 
-// Reused select so we never accidentally leak the password column.
+// Ek hi select reuse karte hain taaki galti se kabhi password column leak na ho
 const publicUserSelect = { id: true, name: true, email: true } as const;
 
-/**
- * Data-access layer for users. Isolating Prisma here keeps the service layer
- * persistence-agnostic and gives us one place to tune queries/selects.
- */
+// User ka data access layer. Saara Prisma yahin rehta hai taaki service layer ko pata na ho ki DB kaunsa hai, aur query tuning ek hi jagah ho
 export const userRepository = {
-  /** Lightweight existence check — selects a single indexed column only. */
+  // Sirf exist check karna hai toh ek hi indexed column (id) select karte hain, pura row nahi
   async existsByEmail(email: string): Promise<boolean> {
     const found = await prisma.user.findUnique({
       where: { email },
@@ -24,7 +21,7 @@ export const userRepository = {
     return found !== null;
   },
 
-  /** Fetch the full row (incl. password) for credential verification. */
+  // Login ke liye pura row (password ke saath) chahiye hota hai
   findByEmailWithPassword(email: string) {
     return prisma.user.findUnique({ where: { email } });
   },

@@ -1,9 +1,6 @@
 import { z } from 'zod';
 
-/**
- * Client-side auth schemas — intentionally identical to the backend's policy so
- * users get instant feedback and the server stays the source of truth.
- */
+// Client side ke auth schemas - jaan boojh ke backend wale policy se bilkul same rakhe hain taaki user ko turant feedback mile aur server source of truth bana rahe
 const password = z
   .string()
   .min(8, 'Password must be at least 8 characters')
@@ -25,7 +22,7 @@ export const registerSchema = z.object({
 export type LoginFormValues = z.infer<typeof loginSchema>;
 export type RegisterFormValues = z.infer<typeof registerSchema>;
 
-/** Task create/edit form. Mirrors the backend task validation. */
+// Task create/edit form. Backend ke task validation se match karta hai
 export const taskFormSchema = z.object({
   title: z.string().trim().min(1, 'Title is required').max(160, 'Title is too long'),
   description: z.string().trim().max(2000, 'Description is too long').optional(),

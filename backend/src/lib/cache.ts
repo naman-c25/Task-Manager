@@ -1,10 +1,7 @@
 import { redis } from '../config/redis.js';
 
-/**
- * Thin caching layer over Redis. Every operation is wrapped so a Redis failure
- * never propagates — reads return a miss (null) and writes are best-effort.
- * Callers treat the cache as an optimization, never a source of truth.
- */
+// Redis ke upar ek patli si caching layer. Har call try/catch me wrapped hai
+// Agar Redis fail ho jaye toh read pe null (miss) aur write best-effort - cache ko sirf optimization maante hain, source of truth kabhi nahi
 export const cache = {
   async get<T>(key: string): Promise<T | null> {
     try {
@@ -19,7 +16,7 @@ export const cache = {
     try {
       await redis.set(key, JSON.stringify(value), 'EX', ttlSeconds);
     } catch {
-      /* best-effort */
+      // best-effort, fail hone par chhod do
     }
   },
 
@@ -27,12 +24,12 @@ export const cache = {
     try {
       await redis.del(key);
     } catch {
-      /* best-effort */
+      // best-effort
     }
   },
 };
 
-/** Centralized cache key builders so key formats stay consistent and typo-free. */
+// Saare cache keys ek hi jagah banate hain taaki format consistent rahe aur typo na ho
 export const cacheKeys = {
   userProfile: (userId: string) => `user:profile:${userId}`,
   tokenDenylist: (jti: string) => `auth:denylist:${jti}`,

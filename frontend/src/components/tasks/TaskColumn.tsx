@@ -14,7 +14,7 @@ interface TaskColumnProps {
   onMove: (task: Task, status: TaskStatus) => void;
 }
 
-/** One board column: header with live count + a scrollable stack of cards. */
+// Board ka ek column - header with live count + cards ka scrollable stack
 export function TaskColumn({ label, icon: Icon, accent, tasks, onEdit, onDelete, onMove }: TaskColumnProps) {
   return (
     <div className="flex min-h-[12rem] flex-col rounded-xl border border-border bg-card/60 p-3">

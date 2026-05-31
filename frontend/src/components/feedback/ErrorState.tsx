@@ -7,7 +7,7 @@ interface ErrorStateProps {
   onRetry?: () => void;
 }
 
-/** Generic error panel with an optional retry action. */
+// Generic error panel, optional retry button ke saath
 export function ErrorState({
   title = 'Something went wrong',
   description = "We couldn't load this content. Please try again.",

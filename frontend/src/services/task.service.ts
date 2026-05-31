@@ -1,10 +1,7 @@
 import { apiClient } from './apiClient';
 import type { ApiResponse, CreateTaskPayload, Task, UpdateTaskPayload } from '@/types';
 
-/**
- * Task API service. Each method unwraps the response envelope so hooks deal in
- * plain domain objects.
- */
+// Task API service. Har method response envelope ko unwrap karke plain object deta hai
 export const taskApi = {
   async list(): Promise<Task[]> {
     const { data } = await apiClient.get<ApiResponse<{ tasks: Task[] }>>('/tasks');

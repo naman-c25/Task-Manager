@@ -2,11 +2,8 @@ import type { NextFunction, Request, Response } from 'express';
 import type { ZodSchema } from 'zod';
 import { ApiError } from '../utils/ApiError.js';
 
-/**
- * Validate the request against a Zod schema shaped as { body, query, params }.
- * Parsed (and coerced) values replace the originals so controllers receive
- * clean, typed input. Validation failures become a 400 with field-level errors.
- */
+// Request ko Zod schema ({ body, query, params } shape) se validate karta hai
+// Parsed (aur coerced) values original ko replace kar dete hain taaki controller ko saaf typed input mile. Fail hone par 400 with field errors
 export const validate =
   (schema: ZodSchema) => (req: Request, _res: Response, next: NextFunction) => {
     const result = schema.safeParse({
@@ -26,11 +23,11 @@ export const validate =
     next();
   };
 
-/** Collapse Zod's nested error tree into a flat { field: message } map. */
+// Zod ke nested error tree ko flat { field: message } map me badalte hain
 function formatZodErrors(error: import('zod').ZodError): Record<string, string> {
   const flat: Record<string, string> = {};
   for (const issue of error.issues) {
-    // Drop the leading segment ("body"/"query"/"params") for a clean key.
+    // Pehla segment ("body"/"query"/"params") hata dete hain taaki key clean rahe
     const path = issue.path.slice(1).join('.') || issue.path.join('.');
     if (!flat[path]) flat[path] = issue.message;
   }

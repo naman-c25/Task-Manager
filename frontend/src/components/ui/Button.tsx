@@ -30,10 +30,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 }
 
-/**
- * The single button primitive used app-wide. Handles variants, sizes, and a
- * built-in loading state (spinner + disabled) so callers never reimplement it.
- */
+// Pure app ka ek hi button primitive. Variants, sizes aur built-in loading state (spinner + disabled) sambhaalta hai taaki har jagah dobara na likhna pade
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', isLoading = false, disabled, children, ...props }, ref) => {
     return (

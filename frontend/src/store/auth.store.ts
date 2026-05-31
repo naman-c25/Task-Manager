@@ -5,7 +5,7 @@ import type { AuthResult, User } from '@/types';
 interface AuthState {
   user: User | null;
   token: string | null;
-  /** True once the session has been verified against the backend (/me). */
+  // Jab session backend se verify ho jaaye (/me) tab true
   isInitialized: boolean;
   isAuthenticated: boolean;
 
@@ -15,11 +15,8 @@ interface AuthState {
   clearAuth: () => void;
 }
 
-/**
- * Auth session store. The token + user are persisted to localStorage so the
- * session survives refreshes (persistent login). On boot, `useSession` revalidates
- * the token against /me and flips `isInitialized`.
- */
+// Auth session store. Token aur user localStorage me persist hote hain taaki refresh ke baad bhi login bana rahe
+// Boot pe useSession token ko /me se revalidate karta hai aur isInitialized flip kar deta hai
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
@@ -40,7 +37,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'taskflow-auth',
-      // Only persist what we need to restore a session.
+      // Sirf utna hi persist karte hain jitna session restore karne ke liye chahiye
       partialize: (state) => ({
         user: state.user,
         token: state.token,
@@ -50,5 +47,5 @@ export const useAuthStore = create<AuthState>()(
   ),
 );
 
-/** Non-reactive token accessor for use outside React (e.g. axios interceptors). */
+// React ke bahar (jaise axios interceptor) token chahiye toh ye non-reactive accessor
 export const getAuthToken = () => useAuthStore.getState().token;

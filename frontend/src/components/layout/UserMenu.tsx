@@ -4,7 +4,7 @@ import { LogOut } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { useAuthMutations } from '@/hooks/useAuthMutations';
 
-/** Avatar button that opens a dropdown with user info and a logout action. */
+// Avatar button jo dropdown kholta hai - user info aur logout
 export function UserMenu() {
   const user = useAuthStore((s) => s.user);
   const { logout } = useAuthMutations();

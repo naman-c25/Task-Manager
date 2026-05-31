@@ -3,11 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { authApi } from '@/services/auth.service';
 import { useAuthStore } from '@/store/auth.store';
 
-/**
- * Bootstraps the auth session on app load. If a persisted token exists, it's
- * revalidated against /me; a failure clears the stale session. `isInitialized`
- * gates the router so protected routes don't flash before we know who's logged in.
- */
+// App load pe auth session ko bootstrap karta hai. Agar persisted token hai toh /me se revalidate karta hai, fail hone par stale session clear kar deta hai
+// isInitialized router ko gate karta hai taaki protected routes pe banda kaun hai ye pata chalne se pehle screen flash na ho
 export function useSession() {
   const token = useAuthStore((s) => s.token);
   const setUser = useAuthStore((s) => s.setUser);
@@ -23,7 +20,7 @@ export function useSession() {
   });
 
   useEffect(() => {
-    // No token → nothing to validate, session is "initialized" immediately.
+    // Token hi nahi hai toh validate karne ko kuch nahi, session turant initialized
     if (!token) {
       setInitialized(true);
       return;
@@ -33,7 +30,7 @@ export function useSession() {
       setInitialized(true);
     }
     if (query.isError) {
-      // The 401 interceptor already cleared the token; ensure local consistency.
+      // 401 interceptor pehle hi token clear kar chuka, yahan bas local state consistent kar dete hain
       clearAuth();
       setInitialized(true);
     }

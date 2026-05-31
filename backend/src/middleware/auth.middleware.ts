@@ -3,14 +3,14 @@ import { ApiError } from '../utils/ApiError.js';
 import { extractBearerToken, verifyAccessToken } from '../utils/token.js';
 import { tokenService } from '../services/token.service.js';
 
-/** Identity attached to the request once a valid token is verified. */
+// Token verify hone ke baad request pe jo identity attach hoti hai
 export interface AuthUser {
   id: string;
   email: string;
   jti: string;
 }
 
-// Augment Express's Request type so `req.user` is fully typed downstream.
+// Express ke Request type ko extend karte hain taaki req.user aage typed mile
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
@@ -20,11 +20,7 @@ declare global {
   }
 }
 
-/**
- * Gatekeeper for protected routes. Expects `Authorization: Bearer <token>`,
- * verifies the signature/expiry, rejects revoked tokens (Redis denylist), then
- * attaches the decoded identity to `req.user`.
- */
+// Protected routes ka darwaan - Authorization: Bearer <token> chahiye, signature/expiry verify karo, revoked token (Redis denylist) reject karo, phir identity req.user pe daal do
 export async function requireAuth(req: Request, _res: Response, next: NextFunction) {
   const token = extractBearerToken(req.headers.authorization);
 

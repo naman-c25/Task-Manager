@@ -5,19 +5,16 @@ import type { CreateTaskPayload, NormalizedApiError, Task, UpdateTaskPayload } f
 
 const TASKS_KEY = ['tasks'] as const;
 
-/** Fetch the current user's tasks. */
+// Current user ke tasks fetch karta hai
 export function useTasks() {
   return useQuery({ queryKey: TASKS_KEY, queryFn: taskApi.list });
 }
 
-/**
- * Task mutations with optimistic updates: the board reflects changes instantly
- * and rolls back automatically if the request fails, then resyncs on settle.
- */
+// Task mutations with optimistic updates - board turant update ho jaata hai aur agar request fail ho toh apne aap rollback ho ke settle pe resync ho jaata hai
 export function useTaskMutations() {
   const queryClient = useQueryClient();
 
-  /** Snapshot + return rollback context shared by all mutations. */
+  // Snapshot le ke rollback ka context return karte hain, sab mutations isko share karte hain
   const optimistic = async (apply: (tasks: Task[]) => Task[]) => {
     await queryClient.cancelQueries({ queryKey: TASKS_KEY });
     const previous = queryClient.getQueryData<Task[]>(TASKS_KEY) ?? [];
@@ -35,6 +32,7 @@ export function useTaskMutations() {
     mutationFn: (payload: CreateTaskPayload) => taskApi.create(payload),
     onMutate: (payload) => {
       const now = new Date().toISOString();
+      // Server se asli id aane tak ek temporary task dikha dete hain
       const optimisticTask: Task = {
         id: `temp-${crypto.randomUUID()}`,
         title: payload.title,

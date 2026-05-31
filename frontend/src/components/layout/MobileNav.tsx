@@ -8,7 +8,7 @@ import { navItems } from './navigation';
 import { Button } from '@/components/ui/Button';
 import { useUiStore } from '@/store/ui.store';
 
-/** Slide-over navigation for small screens, mirroring the desktop sidebar. */
+// Chhoti screens ke liye slide-over nav, desktop sidebar jaisa hi
 export function MobileNav() {
   const isOpen = useUiStore((s) => s.isMobileNavOpen);
   const setMobileNav = useUiStore((s) => s.setMobileNav);

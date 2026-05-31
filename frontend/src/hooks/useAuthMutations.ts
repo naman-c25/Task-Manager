@@ -5,10 +5,7 @@ import { authApi } from '@/services/auth.service';
 import { useAuthStore } from '@/store/auth.store';
 import type { LoginPayload, RegisterPayload, NormalizedApiError } from '@/types';
 
-/**
- * Auth actions as React Query mutations. They own the side effects (store
- * updates, toasts, redirects) so pages stay declarative.
- */
+// Auth actions ko React Query mutations ki tarah rakha hai. Side effects (store update, toast, redirect) yahin handle hote hain taaki pages declarative rahein
 export function useAuthMutations() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -37,7 +34,7 @@ export function useAuthMutations() {
 
   const logout = useMutation({
     mutationFn: () => authApi.logout(),
-    // Optimistic: clear locally regardless of the network result.
+    // Optimistic: network result kuch bhi ho, locally toh clear kar hi dete hain
     onSettled: () => {
       clearAuth();
       queryClient.clear();

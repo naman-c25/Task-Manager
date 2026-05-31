@@ -5,11 +5,11 @@ interface ColumnConfig {
   status: TaskStatus;
   label: string;
   icon: LucideIcon;
-  /** Accent classes for the column header dot/badge. */
+  // Column header ke dot/badge ke accent classes
   accent: string;
 }
 
-/** Single source of truth for the three board columns and their order. */
+// 3 board columns aur unke order ka single source of truth
 export const TASK_COLUMNS: ColumnConfig[] = [
   { status: 'TODO', label: 'Todo', icon: ListTodo, accent: 'text-slate-400' },
   { status: 'IN_PROGRESS', label: 'In Progress', icon: Clock, accent: 'text-amber-400' },

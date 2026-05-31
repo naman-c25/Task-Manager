@@ -23,7 +23,7 @@ export const updateTaskSchema = z.object({
       description: descriptionSchema,
       status: statusSchema.optional(),
     })
-    // Reject empty PATCH bodies so we never issue a no-op update.
+    // Khaali PATCH body reject kar dete hain taaki bekaar ka no-op update na chale
     .refine((data) => Object.keys(data).length > 0, { message: 'No fields to update' }),
 });
 

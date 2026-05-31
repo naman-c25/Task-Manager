@@ -1,19 +1,19 @@
-/** The success envelope every endpoint returns. Mirrors the backend contract. */
+// Success envelope jo har endpoint return karta hai. Backend ke contract se match karta hai
 export interface ApiResponse<T = unknown> {
   success: true;
   message: string;
   data: T;
 }
 
-/** The failure envelope, surfaced by the axios interceptor as a normalized error. */
+// Failure envelope, jise axios interceptor normalize karke aage bhejta hai
 export interface ApiErrorResponse {
   success: false;
   message: string;
-  /** Field-level validation errors, keyed by field name. */
+  // Field-level validation errors, field naam se keyed
   errors?: Record<string, string>;
 }
 
-/** Normalized error thrown by the API layer and consumed across the app. */
+// Normalized error jo API layer throw karta hai aur pure app me use hota hai
 export interface NormalizedApiError {
   message: string;
   status: number;

@@ -11,9 +11,9 @@ import type { Task, TaskStatus } from '@/types';
 interface TaskFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  /** Provided when editing; omit for create. */
+  // Edit ke time milta hai; create me nahi
   task?: Task | null;
-  /** Default column when creating from a specific column (future use). */
+  // Kisi specific column se create karne pe default status (future use)
   defaultStatus?: TaskStatus;
   isSubmitting?: boolean;
   onSubmit: (values: TaskFormValues) => void;
@@ -21,7 +21,7 @@ interface TaskFormModalProps {
 
 const STATUS_OPTIONS: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'DONE'];
 
-/** Create/edit form in a modal. Reused for both flows; `task` toggles the mode. */
+// Modal me create/edit form. Dono ke liye same hai; task hai ya nahi usse mode decide hota hai
 export function TaskFormModal({
   isOpen,
   onClose,
@@ -41,7 +41,7 @@ export function TaskFormModal({
     defaultValues: { title: '', description: '', status: defaultStatus },
   });
 
-  // Sync form values whenever the modal opens (new vs editing).
+  // Jab bhi modal khulta hai form values sync kar dete hain (naya ya edit)
   useEffect(() => {
     if (isOpen) {
       reset({

@@ -1,10 +1,7 @@
 import type { NextFunction, Request, Response, RequestHandler } from 'express';
 
-/**
- * Wraps an async controller so rejected promises are forwarded to Express's
- * error middleware instead of crashing the process. Removes boilerplate
- * try/catch from every handler.
- */
+// Async controller ko wrap karta hai, taaki reject hui promise Express ke error middleware tak pohonch jaye aur process crash na ho
+// Matlab har handler me try/catch likhne ka jhanjhat khatam
 export const asyncHandler =
   (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>): RequestHandler =>
   (req, res, next) => {

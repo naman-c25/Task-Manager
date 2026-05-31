@@ -5,7 +5,7 @@ import { Logo } from './Logo';
 import { UserMenu } from './UserMenu';
 import { useUiStore } from '@/store/ui.store';
 
-/** Top bar inside the dashboard. Hosts the mobile menu trigger, theme, and user menu. */
+// Dashboard ka top bar - mobile menu trigger, theme aur user menu yahan hote hain
 export function Navbar() {
   const setMobileNav = useUiStore((s) => s.setMobileNav);
 

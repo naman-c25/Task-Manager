@@ -10,11 +10,7 @@ import { TASK_COLUMNS } from './taskConfig';
 import { TaskColumn } from './TaskColumn';
 import { TaskFormModal } from './TaskFormModal';
 
-/**
- * The full task board: three columns fed by live data, with create/edit/delete
- * and column-to-column moves — all optimistic. Drop this anywhere (Dashboard,
- * Tasks page) and it's self-contained.
- */
+// Pura task board - 3 columns live data se, create/edit/delete aur column-to-column move, sab optimistic. Self-contained hai, kahin bhi (Dashboard, Tasks page) daal do
 export function TaskBoard() {
   const { data: tasks, isLoading, isError, refetch } = useTasks();
   const { createTask, updateTask, deleteTask } = useTaskMutations();
@@ -22,7 +18,7 @@ export function TaskBoard() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
-  // Group tasks into their columns in a single pass.
+  // Tasks ko ek hi pass me unke columns me baant dete hain
   const grouped = useMemo(() => {
     const map: Record<TaskStatus, Task[]> = { TODO: [], IN_PROGRESS: [], DONE: [] };
     for (const task of tasks ?? []) map[task.status].push(task);
@@ -101,7 +97,7 @@ export function TaskBoard() {
   );
 }
 
-/** Three-column skeleton that mirrors the loaded board layout. */
+// 3-column skeleton jo loaded board jaisa hi dikhta hai
 function BoardSkeleton() {
   return (
     <div className="grid gap-4 md:grid-cols-3">

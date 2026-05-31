@@ -9,11 +9,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: ReactNode;
 }
 
-/**
- * Form input with an integrated label, error/hint text, optional left icon, and
- * an automatic show/hide toggle for password fields. Fully accessible: errors
- * are wired up with aria-invalid and aria-describedby.
- */
+// Form input - label, error/hint text, optional left icon aur password field ke liye auto show/hide toggle. Errors aria-invalid aur aria-describedby se wired hain (accessible)
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, hint, leftIcon, type = 'text', id, ...props }, ref) => {
     const reactId = useId();

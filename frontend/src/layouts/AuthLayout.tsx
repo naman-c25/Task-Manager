@@ -4,14 +4,11 @@ import { Logo } from '@/components/layout/Logo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { fadeInUp } from '@/animations/variants';
 
-/**
- * Split-screen layout for auth pages: a branded marketing panel on the left
- * (desktop only) and the form outlet on the right.
- */
+// Auth pages ka split-screen layout - left pe branded panel (sirf desktop), right pe form ka outlet
 export function AuthLayout() {
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Brand panel — hidden on mobile. */}
+      {/* Brand panel - mobile pe hidden */}
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-gradient-to-br from-primary/90 to-primary p-12 text-primary-foreground lg:flex">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_55%)]" />
         <div className="relative">
@@ -30,7 +27,7 @@ export function AuthLayout() {
         </div>
       </div>
 
-      {/* Form panel. */}
+      {/* Form panel */}
       <div className="flex w-full flex-col lg:w-1/2">
         <div className="flex items-center justify-between p-4 lg:justify-end">
           <div className="lg:hidden">

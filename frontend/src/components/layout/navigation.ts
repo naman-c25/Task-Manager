@@ -4,14 +4,11 @@ export interface NavItem {
   label: string;
   to: string;
   icon: LucideIcon;
-  /** Reserved for Phase 2+ features — shows a "soon" badge and is disabled. */
+  // Future features ke liye - "soon" badge dikhata hai aur disabled rehta hai
   comingSoon?: boolean;
 }
 
-/**
- * Single source of truth for sidebar/mobile navigation. New feature routes
- * (e.g. Tasks board) plug in here without touching the layout components.
- */
+// Sidebar/mobile nav ka single source of truth. Naye routes yahin add karo, layout components ko chhune ki zaroorat nahi
 export const navItems: NavItem[] = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard },
   { label: 'Tasks', to: '/tasks', icon: ListTodo },

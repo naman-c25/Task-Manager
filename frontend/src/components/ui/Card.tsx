@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react';
 import { cn } from '@/lib/cn';
 
-/** Surface container with consistent radius, border, and elevation. */
+// Surface container - consistent radius, border aur halka shadow
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div

@@ -5,10 +5,7 @@ interface SuccessPayload<T> {
   data?: T;
 }
 
-/**
- * Standard success envelope so every endpoint returns a predictable shape:
- * { success, message, data }. The frontend can rely on this contract.
- */
+// Har success response ka ek hi shape rahe - { success, message, data } - taaki frontend ko bharosa rahe response kaisa aayega
 export function sendSuccess<T>(
   res: Response,
   statusCode: number,

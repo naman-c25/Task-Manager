@@ -5,11 +5,11 @@ interface LoaderProps {
   size?: number;
   className?: string;
   label?: string;
-  /** Center the loader in a full-height container (e.g. route fallback). */
+  // Full-height container me center karna ho toh (jaise route fallback)
   fullScreen?: boolean;
 }
 
-/** Spinner used for inline and full-screen loading states. */
+// Inline aur full-screen loading dono ke liye spinner
 export function Loader({ size = 20, className, label, fullScreen = false }: LoaderProps) {
   const spinner = (
     <div className="flex flex-col items-center gap-3 text-muted-foreground">

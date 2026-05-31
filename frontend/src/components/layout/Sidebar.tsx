@@ -6,7 +6,7 @@ import { Logo } from './Logo';
 import { navItems } from './navigation';
 import { useUiStore } from '@/store/ui.store';
 
-/** Persistent desktop sidebar with a collapse toggle. Hidden below `lg`. */
+// Desktop sidebar with collapse toggle. lg se chhote screens pe hidden
 export function Sidebar() {
   const isCollapsed = useUiStore((s) => s.isSidebarCollapsed);
   const toggleSidebar = useUiStore((s) => s.toggleSidebar);

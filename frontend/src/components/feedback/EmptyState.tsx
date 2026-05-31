@@ -9,7 +9,7 @@ interface EmptyStateProps {
   action?: ReactNode;
 }
 
-/** Friendly placeholder for "nothing here yet" — used by lists/boards later. */
+// "Yahan abhi kuch nahi hai" wala friendly placeholder
 export function EmptyState({ icon: Icon = Inbox, title, description, action }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border px-6 py-16 text-center">
