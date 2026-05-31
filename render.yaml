@@ -6,8 +6,10 @@ services:
     runtime: node
     rootDir: backend
     plan: free
-    # `build` runs `prisma generate && tsc`; then apply pending migrations.
-    buildCommand: npm install && npm run build && npm run prisma:deploy
+    # `--include=dev` forces devDependencies (TypeScript + @types/*) to install
+    # even though NODE_ENV=production, since they're required to compile. The
+    # runtime (`npm start`) only needs the already-installed prod deps.
+    buildCommand: npm install --include=dev && npm run build && npm run prisma:deploy
     startCommand: npm start
     healthCheckPath: /health
     envVars:
