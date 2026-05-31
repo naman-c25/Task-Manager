@@ -1,0 +1,26 @@
+// Prisma schema — PostgreSQL.
+// Run `npm run prisma:migrate` to create/apply migrations in development,
+// and `npm run prisma:deploy` in production (CI/Render).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @db.VarChar(60)
+  // @unique creates a B-tree index, so email lookups (login, uniqueness
+  // checks) are O(log n) instead of full table scans.
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Snake-cased table name to match Postgres conventions.
+  @@map("users")
+}
