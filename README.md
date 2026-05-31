@@ -82,14 +82,14 @@ docker compose up -d
 
 # 2. Backend
 cd backend
-cp .env.example .env        # set DATABASE_URL, REDIS_URL, JWT_ACCESS_SECRET
+.env        # set DATABASE_URL, REDIS_URL, JWT_ACCESS_SECRET
 npm install
 npm run prisma:migrate      # create the tables
 npm run dev                 # http://localhost:5000
 
 # 3. Frontend
 cd frontend
-cp .env.example .env        # VITE_API_URL=http://localhost:5000/api/v1
+.env        # VITE_API_URL=http://localhost:5000/api/v1
 npm install
 npm run dev                 # http://localhost:5173
 ```
