@@ -1,19 +1,14 @@
 import { motion } from 'framer-motion';
 import { TaskBoard } from '@/components/tasks/TaskBoard';
-import { useAuthStore } from '@/store/auth.store';
 import { fadeInUp, staggerContainer } from '@/animations/variants';
 
-export default function DashboardPage() {
-  const user = useAuthStore((s) => s.user);
-
+export default function TasksPage() {
   return (
     <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-8">
       <motion.div variants={fadeInUp}>
-        <h1 className="text-2xl font-bold tracking-tight">
-          Welcome back{user ? `, ${user.name.split(' ')[0]}` : ''} 👋
-        </h1>
+        <h1 className="text-2xl font-bold tracking-tight">Tasks</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Here's your board. Create a task and drag it through to done.
+          Organize your work across Todo, In Progress, and Done.
         </p>
       </motion.div>
 

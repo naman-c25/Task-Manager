@@ -14,6 +14,6 @@ export interface NavItem {
  */
 export const navItems: NavItem[] = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard },
-  { label: 'Tasks', to: '/tasks', icon: ListTodo, comingSoon: true },
+  { label: 'Tasks', to: '/tasks', icon: ListTodo },
   { label: 'Settings', to: '/settings', icon: Settings, comingSoon: true },
 ];

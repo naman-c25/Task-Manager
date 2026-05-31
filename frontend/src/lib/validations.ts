@@ -24,3 +24,12 @@ export const registerSchema = z.object({
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 export type RegisterFormValues = z.infer<typeof registerSchema>;
+
+/** Task create/edit form. Mirrors the backend task validation. */
+export const taskFormSchema = z.object({
+  title: z.string().trim().min(1, 'Title is required').max(160, 'Title is too long'),
+  description: z.string().trim().max(2000, 'Description is too long').optional(),
+  status: z.enum(['TODO', 'IN_PROGRESS', 'DONE']),
+});
+
+export type TaskFormValues = z.infer<typeof taskFormSchema>;

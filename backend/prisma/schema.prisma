@@ -21,6 +21,30 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  tasks Task[]
+
   // Snake-cased table name to match Postgres conventions.
   @@map("users")
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+model Task {
+  id          String     @id @default(uuid()) @db.Uuid
+  title       String     @db.VarChar(160)
+  description String?    @db.VarChar(2000)
+  status      TaskStatus @default(TODO)
+  userId      String     @map("user_id") @db.Uuid
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  // Composite index: the board always queries "my tasks, by column", so an
+  // index on (user_id, status) keeps those reads index-only and fast.
+  @@index([userId, status])
+  @@map("tasks")
 }

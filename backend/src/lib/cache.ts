@@ -36,4 +36,5 @@ export const cache = {
 export const cacheKeys = {
   userProfile: (userId: string) => `user:profile:${userId}`,
   tokenDenylist: (jti: string) => `auth:denylist:${jti}`,
+  taskList: (userId: string) => `tasks:list:${userId}`,
 };
